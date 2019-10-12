@@ -5,6 +5,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "Imagenes")
 class Imagenes(
+        @Column
         val iurl:String,
         @Column
         @Id

@@ -5,6 +5,7 @@ import javax.persistence.*
 @Entity
 @Table(name="Marca")
 class Marca(
+        @Column
         val mnombre:String,
         @OneToMany(mappedBy="brands", cascade = arrayOf(CascadeType.MERGE),fetch = FetchType.EAGER)
         @JsonManagedReference(value = "marcas_producto")

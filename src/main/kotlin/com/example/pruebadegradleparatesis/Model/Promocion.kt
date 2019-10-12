@@ -6,9 +6,10 @@ import javax.persistence.*
 @Table(name="Promociones")
 class Promocion(
         @Column
-        val prfechainicio:Calendar,
+        val prfechainicio: Calendar,
         @Column
-        val prfechatermino:Calendar,
+        val prfechatermino: Calendar,
+        @Column
         val prvalor:Int,
         @Column
         @Id
