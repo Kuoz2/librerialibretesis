@@ -2,7 +2,6 @@ package com.example.pruebadegradleparatesis.Controller
 
 import com.example.pruebadegradleparatesis.Model.*
 import com.example.pruebadegradleparatesis.Repository.*
-import com.example.pruebadegradleparatesis.Service.CategoryService
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.hibernate.SessionFactory
@@ -27,34 +26,34 @@ class CustomerController {
     lateinit var pers: CustomerRepository
     @Autowired
     lateinit var emplo: EmployeeRepository
+   //Anotacion del servicio que se utilizara.
     @Autowired
-    lateinit var service: CategoryService //Anotacion del servicio que se utilizara.
-    @Autowired
-    lateinit var categories:CategoriesRepository
+    lateinit var categories:CategoriaRepository
 
     @GetMapping
-fun listar():List<Categories>{
+fun listar():List<Categorias>{
     return categories.findAll()
 }
     @PostMapping
-    fun agregar( @RequestBody c: Categories): Categories
+    fun agregar( @RequestBody c: Categorias): Categorias
     {
         return categories.save(c)
     }
 
     @GetMapping( path = ["/{id}"])
-    fun Actualizarcategoria(@PathVariable("id") id:Long): Categories{
+    fun Actualizarcategoria(@PathVariable("id") id:Long): Categorias{
         return categories.getOne(id)
     }
 
-    @PutMapping(path = ["/id"])
-    fun editar(@RequestBody @PathVariable("id") p:Categories ):Categories{
-        return categories.save(p)
+    @PutMapping(path = ["/{id}"])
+    fun editar( @PathVariable id:Long, @RequestBody p:Categorias):Categorias{
+       p.caid = id.toInt()
+        return categories.saveAndFlush(p)
     }
 
     @DeleteMapping( path = ["/id"])
-fun DeleteCategorie(id: Long): Categories {
-        val p: Categories = categories.getOne(id)
+fun DeleteCategorie(id: Long): Categorias {
+        val p: Categorias = categories.getOne(id)
         categories.delete(p)
         return p
     }

@@ -1,26 +1,30 @@
 package com.example.pruebadegradleparatesis.Controller
 
-import com.example.pruebadegradleparatesis.Model.Categories
-import com.example.pruebadegradleparatesis.Model.brands
-import com.example.pruebadegradleparatesis.Repository.BrandsRepository
-import com.example.pruebadegradleparatesis.Repository.CategoriesRepository
+import com.example.pruebadegradleparatesis.Model.Marca
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @CrossOrigin(origins = ["http://localhost:4200"],maxAge = 3600)
 @RestController
-@RequestMapping("/brands")
+@RequestMapping("/marca")
 class ControllerBrands {
     @Autowired
     lateinit var brands: BrandsRepository
 
     @GetMapping
-    fun listar():List<brands>{
+    fun listar():List<Marca>{
         return brands.findAll()
     }
     @PostMapping
-    fun agregar( @RequestBody c: brands): brands
+    @ResponseBody
+    fun agregar( @RequestBody c: Marca): Marca
     {
         return brands.save(c)
+    }
+
+    @PutMapping(path = ["/{id}"])
+    fun editar( @PathVariable id:Long, @RequestBody p:Marca):Marca{
+        p.mid = id
+        return brands.saveAndFlush(p)
     }
 }
