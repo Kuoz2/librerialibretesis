@@ -41,13 +41,13 @@ fun listar():List<Categorias>{
     }
 
     @GetMapping( path = ["/{id}"])
-    fun Actualizarcategoria(@RequestBody @PathVariable("id") id:Int): Categorias{
-        return categories.getOne(id.toInt().toLong())
+    fun Actualizarcategoria(@PathVariable("id") id:Long): Categorias{
+        return categories.getOne(id)
     }
 
     @PutMapping(path = ["/{id}"])
     fun editar( @PathVariable id:Long, @RequestBody p:Categorias):Categorias{
-       p.caid = id.toInt()
+       p.caid = id
         return categories.saveAndFlush(p)
     }
 
