@@ -1,6 +1,7 @@
 package com.example.pruebadegradleparatesis.Controller
 
 import com.example.pruebadegradleparatesis.Model.Marca
+import com.example.pruebadegradleparatesis.Repository.MarcaRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/marca")
 class ControllerBrands {
     @Autowired
-    lateinit var brands: BrandsRepository
+    lateinit var brands: MarcaRepository
 
     @GetMapping
     fun listar():List<Marca>{

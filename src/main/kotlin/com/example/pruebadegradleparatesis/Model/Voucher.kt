@@ -1,20 +1,15 @@
 package com.example.pruebadegradleparatesis.Model
 
-import org.graalvm.compiler.debug.TimeSource
-import org.springframework.format.annotation.DateTimeFormat
+
 import java.sql.Date
-import java.sql.Time
-import java.sql.Timestamp
-import java.time.Month
-import java.time.Year
-import java.time.YearMonth
+import java.time.LocalTime
 import java.util.*
 import javax.persistence.*
 @Entity
 @Table(name="Voucher")
 class Voucher(
         @Column
-        @Temporal(TemporalType.TIME)
+        @Temporal(TemporalType.DATE)
         val vemision:Calendar,
         @Column
         val vsubtotal:Int,

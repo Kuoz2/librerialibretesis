@@ -41,8 +41,8 @@ fun listar():List<Categorias>{
     }
 
     @GetMapping( path = ["/{id}"])
-    fun Actualizarcategoria(@PathVariable("id") id:Long): Categorias{
-        return categories.getOne(id)
+    fun Actualizarcategoria(@RequestBody @PathVariable("id") id:Int): Categorias{
+        return categories.getOne(id.toInt().toLong())
     }
 
     @PutMapping(path = ["/{id}"])
