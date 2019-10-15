@@ -1,6 +1,7 @@
 package com.example.pruebadegradleparatesis.Model
 
 
+import org.springframework.format.annotation.DateTimeFormat
 import java.sql.Date
 import java.time.LocalTime
 import java.util.*
@@ -8,8 +9,8 @@ import javax.persistence.*
 @Entity
 @Table(name="Voucher")
 class Voucher(
-        @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-        @Column
+
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
         val vemision:java.util.Date ,
         @Column
         val vsubtotal:Int,
