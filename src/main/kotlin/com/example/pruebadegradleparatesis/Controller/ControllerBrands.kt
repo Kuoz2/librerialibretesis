@@ -1,5 +1,6 @@
 package com.example.pruebadegradleparatesis.Controller
 
+import com.example.pruebadegradleparatesis.Model.Categorias
 import com.example.pruebadegradleparatesis.Model.Marca
 import com.example.pruebadegradleparatesis.Repository.MarcaRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,6 +22,11 @@ class ControllerBrands {
     fun agregar( @RequestBody c: Marca): Marca
     {
         return brands.save(c)
+    }
+
+    @GetMapping( path = ["/{id}"])
+    fun Actualizarcategoria(@PathVariable("id") id:Long): Marca {
+        return brands.getOne(id)
     }
 
     @PutMapping(path = ["/{id}"])

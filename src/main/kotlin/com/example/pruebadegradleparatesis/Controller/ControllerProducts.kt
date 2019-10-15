@@ -28,13 +28,22 @@ class ControllerProducts {
         return products.findAll()
     }
 
-    @PostMapping
-
-    fun guardarProducto(@RequestBody @Valid c:Productos, @RequestBody @Valid p:Categorias, @RequestBody @Valid b:Marca) {
-        val datosc = Categorias(p.cnombre)
-        val datosb = Marca(b.mnombre)
-        val datos = Productos(c.pcodigo,c.pdetalle,c.pdescripcion,c.pvalor,c.pstock,c.pstockseguridad,c.pvcatalogo,c.pactivado,datosc,datosb)
-         products.save(datos)
+@PostMapping
+    fun guardarProducto(@RequestBody @Valid datos:Productos):Productos {
+    /*    val datoscategories = Categorias(cnombre = "Cartulina Actualizado",caid =1 )
+        val datosmarca = Marca(mnombre = "Alcatel",mid = 2)
+        val datos = Productos(
+                pcodigo = 212,
+                pdescripcion = "dasda",
+                pdetalle = "dsad",
+                pvalor = 32,
+                pstock = 100,
+                pstockseguridad = 100,
+                pvcatalogo =  false,
+                pactivado = true,
+                categories = datoscategories,
+                brands = datosmarca)*/
+         return products.save(datos)
     }
 
     @PutMapping(path = ["/{id}"])
@@ -47,19 +56,20 @@ class ControllerProducts {
         return products.getOne(id)
     }
 
-   /*@RequestMapping("/pruebaguardado")
+  /* @RequestMapping("/pruebaguardado")
     fun Guardarunproductomanual(){
-        val guardadocategoria = Categories("Lápiz ","Intrumento de escritura" )
-        val guardadatosmarca = brands( "Bic","Bolígrafo económico y desechable producido a gran escala ")
+        val guardadocategoria = Categorias("Lápiz ")
+        val guardadatosmarca = Marca( "Bic")
+            marcas.save(guardadatosmarca)
+            categorias.save(guardadocategoria)
 
 
-
-        val guardandoproductos = Products(1616513,
+        val guardandoproductos = Productos(1616513,
                 "boligrafo bic extra comfort",
                 "De larga duración, barril translúcido",
                 500,
                 36,
-                "C:\\Users\\kuoz2\\Bibliotecas\\Imágenes\\lapiceros.jpg",
+                0,
                 true,
                 true, guardadocategoria,guardadatosmarca)
 

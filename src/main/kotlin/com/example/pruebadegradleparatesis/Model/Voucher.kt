@@ -8,9 +8,9 @@ import javax.persistence.*
 @Entity
 @Table(name="Voucher")
 class Voucher(
+        @Temporal(javax.persistence.TemporalType.TIMESTAMP)
         @Column
-        @Temporal(TemporalType.DATE)
-        val vemision:Calendar,
+        val vemision:java.util.Date ,
         @Column
         val vsubtotal:Int,
         @Column
@@ -22,5 +22,5 @@ class Voucher(
         @GeneratedValue(strategy = GenerationType.AUTO)
         var vid:Int=-1
 ) {
-    constructor():this(Calendar.getInstance(),0,0,0)
+    constructor():this(Date() ,0,0,0)
 }

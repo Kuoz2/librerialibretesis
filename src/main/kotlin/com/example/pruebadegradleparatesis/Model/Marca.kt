@@ -7,7 +7,7 @@ import javax.persistence.*
 class Marca(
         @Column
         val mnombre:String,
-        @OneToMany(mappedBy="brands", cascade = arrayOf(CascadeType.MERGE),fetch = FetchType.EAGER)
+        @OneToMany(mappedBy="brands",fetch = FetchType.EAGER)
         @JsonManagedReference(value = "marcas_producto")
         val marca: List<Productos> = emptyList(),
         @Id
