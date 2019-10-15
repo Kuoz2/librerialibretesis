@@ -12,7 +12,7 @@ import javax.persistence.*
 @Table(name="Voucher")
 class Voucher(
         @Column
-
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "dd-MM-yyyy")
         val vemision: LocalDate,
         @Column
         val vsubtotal:Int,

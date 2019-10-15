@@ -24,8 +24,8 @@ class VoucherController {
     fun listar():List<Voucher>{
         return voucher.findAll()
     }
-    @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun agregar( @RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "dd-MM-yyyy") v: Voucher): Voucher
+    @PostMapping
+    fun agregar( @RequestBody  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "dd-MM-yyyy") v: Voucher): Voucher
     {
         return voucher.save(v)
     }
