@@ -6,6 +6,7 @@ import com.example.pruebadegradleparatesis.Repository.VoucherRepository
 import jdk.jfr.ContentType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.ResourceProperties
+import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import java.awt.PageAttributes
@@ -24,7 +25,7 @@ class VoucherController {
         return voucher.findAll()
     }
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun agregar( @RequestBody v: Voucher): Voucher
+    fun agregar( @RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "dd-MM-yyyy") v: Voucher): Voucher
     {
         return voucher.save(v)
     }

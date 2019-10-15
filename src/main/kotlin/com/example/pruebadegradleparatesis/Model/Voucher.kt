@@ -1,17 +1,19 @@
 package com.example.pruebadegradleparatesis.Model
 
 
+
 import org.springframework.format.annotation.DateTimeFormat
-import java.sql.Date
-import java.time.LocalTime
+import java.sql.Timestamp
+import java.time.LocalDate
+
 import java.util.*
 import javax.persistence.*
 @Entity
 @Table(name="Voucher")
 class Voucher(
+        @Column
 
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-        val vemision:java.util.Date ,
+        val vemision: LocalDate,
         @Column
         val vsubtotal:Int,
         @Column
@@ -23,5 +25,9 @@ class Voucher(
         @GeneratedValue(strategy = GenerationType.AUTO)
         var vid:Int=-1
 ) {
-    constructor():this(Date() ,0,0,0)
+    constructor():this(LocalDate.now(),
+            0,
+            0,
+            0
+    )
 }
