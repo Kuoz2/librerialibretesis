@@ -7,7 +7,11 @@ import com.example.pruebadegradleparatesis.Repository.CategoriaRepository
 import com.example.pruebadegradleparatesis.Repository.MarcaRepository
 import com.example.pruebadegradleparatesis.Repository.ProductoRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.data.jpa.repository.Query
 import org.springframework.web.bind.annotation.*
+import javax.persistence.EntityManager
+import javax.persistence.EntityManagerFactory
 import javax.validation.Valid
 
 @CrossOrigin(origins = ["http://localhost:4200"],maxAge = 3600)
@@ -23,8 +27,9 @@ class ControllerProducts {
     @Autowired
     lateinit var marcas: MarcaRepository
 
+
     @GetMapping
-    fun allProducts():List<Productos>{
+    fun allProducts(): List<Productos>{
         return products.findAll()
     }
 

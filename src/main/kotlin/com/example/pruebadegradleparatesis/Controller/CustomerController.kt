@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory
 import org.hibernate.Transaction
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.jpa.domain.AbstractPersistable_.id
+import org.springframework.data.jpa.repository.Query
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
@@ -24,14 +25,14 @@ import javax.validation.Valid
 class CustomerController {
   @Autowired
     lateinit var pers: CustomerRepository
-    @Autowired
-    lateinit var emplo: EmployeeRepository
+
    //Anotacion del servicio que se utilizara.
     @Autowired
     lateinit var categories:CategoriaRepository
 
     @GetMapping
 fun listar():List<Categorias>{
+
     return categories.findAll()
 }
     @PostMapping
