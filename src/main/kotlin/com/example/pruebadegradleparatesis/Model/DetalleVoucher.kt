@@ -1,6 +1,6 @@
 package com.example.pruebadegradleparatesis.Model
 
-import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.*
 
 @Entity
@@ -9,11 +9,15 @@ class DetalleVoucher(
         @Column
         val dvcantidad:Int,
         @Column
-        val dvprescio:Int,
+        val dvprecio:Int,
+        @Column
         @ManyToOne( fetch = FetchType.LAZY)
+        @JsonManagedReference(value = "detalle_voucher")
         @JoinColumn(name ="vnumero", nullable = false)
         val voucher: Voucher? = null,
+        @Column
         @ManyToOne(fetch = FetchType.LAZY)
+        @JsonManagedReference(value = "detalle_product")
         @JoinColumn(name = "pid", nullable = false)
         val productos: Productos?= null,
 

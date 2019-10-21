@@ -1,6 +1,8 @@
 package com.example.pruebadegradleparatesis.Model
 
+import com.fasterxml.jackson.annotation.JacksonAnnotation
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import org.springframework.data.jpa.repository.Query
 import javax.persistence.*
 
@@ -33,6 +35,7 @@ class Productos(
         @JoinColumn(name = "mid", nullable = false)
         val brands: Marca? = null,
         @OneToMany(mappedBy = "productos",fetch = FetchType.EAGER)
+        @JsonManagedReference(value = "detalle_product")
         val detallevoucher: List<DetalleVoucher> = emptyList(),
         @Column
         @Id

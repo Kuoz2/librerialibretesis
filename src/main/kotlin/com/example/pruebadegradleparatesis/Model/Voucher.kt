@@ -4,6 +4,7 @@ package com.example.pruebadegradleparatesis.Model
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import org.springframework.format.annotation.DateTimeFormat
 import java.lang.ref.Reference
 import java.time.LocalDate
@@ -21,6 +22,7 @@ class Voucher(
         @Column
         val vtotal:Int,
         @OneToMany(mappedBy = "voucher",fetch = FetchType.EAGER)
+        @JsonManagedReference(value = "detalle_voucher")
         val detallevoucher: List<DetalleVoucher> = emptyList(),
         @Column
         @Id
