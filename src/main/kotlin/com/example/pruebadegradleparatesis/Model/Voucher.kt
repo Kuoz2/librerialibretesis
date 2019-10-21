@@ -20,7 +20,7 @@ class Voucher(
         val vdescuento:Int,
         @Column
         val vtotal:Int,
-        @OneToMany(mappedBy = "Voucher",fetch = FetchType.EAGER)
+        @OneToMany(mappedBy = "voucher",fetch = FetchType.EAGER)
         val detallevoucher: List<DetalleVoucher> = emptyList(),
         @Column
         @Id

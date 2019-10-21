@@ -1,5 +1,6 @@
 package com.example.pruebadegradleparatesis.Model
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import javax.persistence.*
 
 @Entity

@@ -32,7 +32,7 @@ class Productos(
         @JsonBackReference(value = "marcas_producto")
         @JoinColumn(name = "mid", nullable = false)
         val brands: Marca? = null,
-        @OneToMany(mappedBy = "Productos",fetch = FetchType.EAGER)
+        @OneToMany(mappedBy = "productos",fetch = FetchType.EAGER)
         val detallevoucher: List<DetalleVoucher> = emptyList(),
         @Column
         @Id
