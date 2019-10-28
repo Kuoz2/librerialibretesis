@@ -22,10 +22,7 @@ class ControllerProducts {
 
     @Autowired
     lateinit var products: ProductoRepository
-    @Autowired
-    lateinit var categorias: CategoriaRepository
-    @Autowired
-    lateinit var marcas: MarcaRepository
+
 
 
     @GetMapping

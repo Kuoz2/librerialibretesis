@@ -23,7 +23,12 @@ class Usuario(
         @Column
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        var uid:Int=-1
+        var uid:Int=-1,
+        @ManyToMany
+        @JoinTable(name = "post_tags",
+                joinColumns = [JoinColumn(name = "uid", referencedColumnName = "uid")],
+                inverseJoinColumns = [JoinColumn(name = "rolid", referencedColumnName = "rolid")])
+        val roluser:List<Rol> = mutableListOf<Rol>()
 
 ) {
     constructor():this("","","","",0,"","","")

@@ -1,25 +1,38 @@
 package com.example.pruebadegradleparatesis.Controller
 
+import com.example.pruebadegradleparatesis.Model.DetalleVoucher
+import com.example.pruebadegradleparatesis.Model.Productos
 import com.example.pruebadegradleparatesis.Model.Voucher
 import com.example.pruebadegradleparatesis.Repository.DetalleVocuherRepository
 import com.example.pruebadegradleparatesis.Repository.VoucherRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Controller
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @CrossOrigin(origins = ["http://localhost:4200"],maxAge = 3600)
 @RestController
 @RequestMapping("/detallevoucher")
-class DetalleVoucher {
+class ControllerDetalleVocuher {
+
+
     @Autowired
-    lateinit var detallevoucher: DetalleVocuherRepository
+    lateinit var detalle: DetalleVocuherRepository
 
     @GetMapping
-    fun listar(): MutableList<com.example.pruebadegradleparatesis.Model.DetalleVoucher> {
+    fun listar():List<DetalleVoucher>{
 
-        return detallevoucher.findAll()
+        return detalle.findAll()
     }
+
     @PostMapping
-    fun agregardetallevoucher(@RequestBody detalle: DetalleVoucher): com.example.pruebadegradleparatesis.Model.DetalleVoucher {
-        return detallevoucher.save(detalle)
+    fun agregar( @RequestBody @Valid v: DetalleVoucher):DetalleVoucher
+    {
+        return detalle.save(v)
     }
+
+
+
+
 }

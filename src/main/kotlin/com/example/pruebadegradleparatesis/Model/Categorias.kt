@@ -8,9 +8,11 @@ import javax.persistence.*
 class Categorias(
         @Column
         var cnombre:String,
+
         @OneToMany(mappedBy="categories",fetch = FetchType.EAGER)
         @JsonManagedReference(value = "categorias_producto")
         val products: List<Productos> = emptyList(),
+
         @Column
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)

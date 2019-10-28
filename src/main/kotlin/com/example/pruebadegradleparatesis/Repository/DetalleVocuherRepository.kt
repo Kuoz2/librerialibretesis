@@ -4,5 +4,4 @@ import com.example.pruebadegradleparatesis.Model.DetalleVoucher
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface DetalleVocuherRepository:JpaRepository<DetalleVoucher,Long> {
-    abstract fun save(): DetalleVoucher
 }

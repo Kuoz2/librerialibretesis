@@ -15,6 +15,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 
 @Configuration
 class ConnectorWebHttos {
+
+
+
     /*
        @Bean
        fun objectMapper(): ObjectMapper {

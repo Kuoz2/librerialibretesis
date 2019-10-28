@@ -2,14 +2,9 @@ package com.example.pruebadegradleparatesis.Model
 
 
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonManagedReference
-import org.springframework.format.annotation.DateTimeFormat
-import java.lang.ref.Reference
-import java.time.LocalDate
 
-import java.util.*
 import javax.persistence.*
 @Entity
 @Table(name="Voucher")
@@ -21,9 +16,16 @@ class Voucher(
         val vdescuento:Int,
         @Column
         val vtotal:Int,
-        @OneToMany(mappedBy = "voucher",fetch = FetchType.EAGER)
+
+        @OneToMany(mappedBy = "voucher",fetch = FetchType.EAGER, cascade = [CascadeType.MERGE])
         @JsonManagedReference(value = "detalle_voucher")
         val detallevoucher: List<DetalleVoucher> = emptyList(),
+
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JsonBackReference(value = "venta_voucher")
+        @JoinColumn(name = "trnsid", nullable = false)
+        val voucherventa: Ventas? = null,
+
         @Column
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)

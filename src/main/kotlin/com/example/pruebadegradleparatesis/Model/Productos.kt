@@ -26,14 +26,17 @@ class Productos(
         val pvcatalogo:Boolean,
         @Column
         val pactivado: Boolean,
+
         @ManyToOne( fetch = FetchType.LAZY)
         @JsonBackReference(value = "categorias_producto")
         @JoinColumn(name = "catid", nullable = false)
         val categories: Categorias? = null,
+
         @ManyToOne(fetch = FetchType.LAZY)
         @JsonBackReference(value = "marcas_producto")
         @JoinColumn(name = "mid", nullable = false)
         val brands: Marca? = null,
+
         @OneToMany(mappedBy = "productos",fetch = FetchType.EAGER)
         @JsonManagedReference(value = "detalle_product")
         val detallevoucher: List<DetalleVoucher> = emptyList(),
@@ -42,5 +45,6 @@ class Productos(
         @GeneratedValue(strategy = GenerationType.AUTO)
         var pid:Int=-1
 ) {
+
     constructor():this(0,"","",0,0,0,false,false)
 }

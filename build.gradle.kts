@@ -22,6 +22,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
     implementation("org.springframework.boot:spring-boot-starter-web-services")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -29,6 +31,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.9.9")
     //Instalacion de transbank para su prueba,
    // implementation( "com.github.transbankdevelopers:transbank-sdk-java:1.3.0")
+
 
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
