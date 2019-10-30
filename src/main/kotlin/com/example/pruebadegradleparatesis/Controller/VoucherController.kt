@@ -31,7 +31,7 @@ class VoucherController {
 
 
     //Prurba ultima de voucher
-    @RequestMapping("/guardardarosvoucher")
+   /* @RequestMapping("/guardardarosvoucher")
     @Transactional
     fun guardarpostvoucher():DetalleVoucher{
         val voucher = Voucher(12,12,12)
@@ -40,5 +40,5 @@ class VoucherController {
 
 
         return detallevoucherrepository.save(detallevoucher)
-    }
+    }*/
 }

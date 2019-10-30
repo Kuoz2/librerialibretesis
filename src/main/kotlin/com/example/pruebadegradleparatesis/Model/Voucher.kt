@@ -21,10 +21,11 @@ class Voucher(
         @JsonManagedReference(value = "detalle_voucher")
         val detallevoucher: List<DetalleVoucher> = emptyList(),
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JsonBackReference(value = "venta_voucher")
-        @JoinColumn(name = "trnsid", nullable = false)
-        val voucherventa: Ventas? = null,
+
+        @ManyToOne( fetch = FetchType.LAZY)
+        @JsonBackReference(value = "ventas_voucher")
+        @JoinColumn(name = "trsnid", nullable = false, referencedColumnName = "trsnid")
+        val ventas: Ventas? = null,
 
         @Column
         @Id

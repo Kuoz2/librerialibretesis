@@ -6,15 +6,15 @@ import javax.persistence.*
 @Entity
 @Table(name="Documentos")
 class Documentos (
-        @Column
         var docnumero:String,
-        @Column
         var docurl: String,
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JsonBackReference(value = "documentos_venta")
-        @JoinColumn(name = "trsnid", nullable = false)
-        val documento: Ventas? = null,
+
+        @ManyToOne( fetch = FetchType.LAZY)
+        @JsonBackReference(value = "ventas_documentos")
+        @JoinColumn(name = "trsnid", nullable = false, referencedColumnName = "trsnid")
+        val ventasdocumentos: Ventas? = null,
+
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
