@@ -8,18 +8,14 @@ import javax.persistence.*
 class Pagos(
         val pagostventa:String,
         val pagomonto:Int,
-
+        @ManyToOne( fetch = FetchType.LAZY)
+        @JsonBackReference(value = "modopago")
+        @JoinColumn(name = "mpid", nullable = false)
+        val pagomodo: Mododepago? = null,
         @ManyToOne( fetch = FetchType.LAZY)
         @JsonBackReference(value = "ventas_pagos")
         @JoinColumn(name = "trsnid", nullable = false, referencedColumnName = "trsnid")
         val ventaspagos: Ventas? = null,
-
-        @ManyToOne( fetch = FetchType.LAZY)
-        @JsonBackReference(value = "mododepago_pago")
-        @JoinColumn(name = "mpid", nullable = false)
-        val pagomodo: Mododepago? = null,
-
-
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         var pagoid: Int = -1

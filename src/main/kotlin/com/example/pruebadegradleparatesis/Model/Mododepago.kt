@@ -6,17 +6,14 @@ import javax.persistence.*
 @Entity
 @Table(name = "Mododepago")
 class Mododepago(
-        @Column
         val mpnombre:String,
 
-        @OneToMany(mappedBy = "mododepago",fetch = FetchType.LAZY)
-        @JsonManagedReference(value = "mododepago_pago")
-        val modopago: List<Pagos> = emptyList(),
-
-        @Column
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        var mpid:Int=-1
+        var mpid:Int=-1,
+        @OneToMany(mappedBy="mododepago",fetch = FetchType.LAZY)
+@JsonManagedReference(value = "modopago")
+var moodopagos: List<Pagos> = emptyList()
 ) {
     constructor():this("")
 }
