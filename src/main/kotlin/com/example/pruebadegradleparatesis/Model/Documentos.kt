@@ -10,10 +10,11 @@ class Documentos (
         var docurl: String,
 
 
-        @ManyToOne( fetch = FetchType.LAZY)
+        @ManyToOne
         @JsonBackReference(value = "ventas_documentos")
-        @JoinColumn(name = "trsnid", nullable = false, referencedColumnName = "trsnid")
-        val ventasdocumentos: Ventas? = null,
+        @JoinColumn(name = "trsnid", nullable = true)
+        val ventas: Ventas? = null,
+
 
 
         @Id

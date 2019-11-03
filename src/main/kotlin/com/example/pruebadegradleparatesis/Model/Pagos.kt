@@ -1,5 +1,6 @@
 package com.example.pruebadegradleparatesis.Model
 
+import com.fasterxml.jackson.annotation.JacksonAnnotation
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.*
@@ -17,9 +18,12 @@ class Pagos(
         @JoinColumn(name = "trsnid", nullable = false, referencedColumnName = "trsnid")
         val ventaspagos: Ventas? = null,
 
-        @OneToMany(mappedBy = "pagos",fetch = FetchType.EAGER)
-        @JsonManagedReference(value = "pagos_mediospago")
-        val medio: List<Medio> = emptyList(),
+
+        @ManyToOne
+        @JsonBackReference(value = "pagos_medios")
+        @JoinColumn(name = "mpid", nullable = true)
+        val mediopago: Medio? = null,
+
 
         @Column
         @Id

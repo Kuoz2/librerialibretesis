@@ -23,8 +23,6 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/categories")
 class CustomerController {
-  @Autowired
-    lateinit var pers: CustomerRepository
 
    //Anotacion del servicio que se utilizara.
     @Autowired

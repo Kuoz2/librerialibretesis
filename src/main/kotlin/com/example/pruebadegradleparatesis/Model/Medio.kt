@@ -8,12 +8,9 @@ import javax.persistence.*
 class Medio(
         @Column
         val mpnombre:String,
-
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JsonBackReference(value = "pagos_mediospago")
-        @JoinColumn(name = "pagoid")
-        val modopago: Pagos? = null,
-
+        @OneToMany(mappedBy = "mediopago")
+        @JsonBackReference(value = "medio_pago")
+        val mediopagos: List<Pagos> = arrayListOf(),
         @Column
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)

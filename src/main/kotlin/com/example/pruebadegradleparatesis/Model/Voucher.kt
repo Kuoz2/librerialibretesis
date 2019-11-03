@@ -22,9 +22,9 @@ class Voucher(
         val detallevoucher: List<DetalleVoucher> = emptyList(),
 
 
-        @ManyToOne( fetch = FetchType.LAZY)
+        @ManyToOne
         @JsonBackReference(value = "ventas_voucher")
-        @JoinColumn(name = "trsnid", nullable = false, referencedColumnName = "trsnid")
+        @JoinColumn(name = "trsnid", nullable = true)
         val ventas: Ventas? = null,
 
         @Column

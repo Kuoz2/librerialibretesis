@@ -20,16 +20,20 @@ class Usuario(
         val unacionalidad:String,
         @Column
         val udireccion:String,
+        @ManyToMany(cascade = [CascadeType.ALL],fetch = FetchType.EAGER)
+        @JoinTable(name = "usuario_rol",
+                joinColumns = [JoinColumn(name = "uid", referencedColumnName = "uid")],
+                inverseJoinColumns = [JoinColumn(name = "rolid", referencedColumnName = "rolid")])
+        val roluser: List<Rol> = mutableListOf<Rol>(),
         @Column
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        var uid:Int=-1,
-        @ManyToMany
-        @JoinTable(name = "post_tags",
-                joinColumns = [JoinColumn(name = "uid", referencedColumnName = "uid")],
-                inverseJoinColumns = [JoinColumn(name = "rolid", referencedColumnName = "rolid")])
-        val roluser:List<Rol> = mutableListOf<Rol>()
+        var uid:Int=-1
+
 
 ) {
     constructor():this("","","","",0,"","","")
 }
+
+
+

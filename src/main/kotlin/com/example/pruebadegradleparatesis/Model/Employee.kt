@@ -1,28 +1,80 @@
 package com.example.pruebadegradleparatesis.Model
 
-import com.fasterxml.jackson.annotation.*
-import org.springframework.format.annotation.NumberFormat
-import javax.persistence.*
+class Employee {
+    private var empId: String? = null
+    private var name: String? = null
+    private var designation: String? = null
+    private var salary: Double = 0.toDouble()
 
-@Entity
-@Table(name = "employee")
-class Employee(
+    fun Employee() {}
 
-        @Column
-        val Rol_employee : String?,
+    fun getName(): String? {
+        return name
+    }
 
+    fun setName(name: String) {
+        this.name = name
+    }
 
-        @OneToMany(mappedBy="employee", cascade = arrayOf(CascadeType.MERGE),fetch = FetchType.EAGER)
-        @JsonManagedReference(value = "person_employee")
-        val personas:List<Person> = emptyList(),
+    fun getDesignation(): String? {
+        return designation
+    }
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        val Id: Int? = -1){
+    fun setDesignation(designation: String) {
+        this.designation = designation
+    }
 
-        override fun toString(): String {
-                return "persona:${personas.map { it ->it.Rut}}"
-        }
+    fun getSalary(): Double {
+        return salary
+    }
 
-    constructor():this("")
+    fun setSalary(salary: Double) {
+        this.salary = salary
+    }
+
+    fun getEmpId(): String? {
+        return empId
+    }
+
+    fun setEmpId(empId: String) {
+        this.empId = empId
+    }
+
+    override fun hashCode(): Int {
+        val prime = 31
+        var result = 1
+        result = prime * result + if (designation == null) 0 else designation!!.hashCode()
+        result = prime * result + if (empId == null) 0 else empId!!.hashCode()
+        result = prime * result + if (name == null) 0 else name!!.hashCode()
+        val temp: Long
+        temp = java.lang.Double.doubleToLongBits(salary)
+        result = prime * result + (temp xor temp.ushr(32)).toInt()
+        return result
+    }
+
+    override fun equals(obj: Any?): Boolean {
+        if (this === obj)
+            return true
+        if (obj == null)
+            return false
+        if (javaClass != obj.javaClass)
+            return false
+        val other = obj as Employee?
+        if (designation == null) {
+            if (other!!.designation != null)
+                return false
+        } else if (designation != other!!.designation)
+            return false
+        if (empId == null) {
+            if (other.empId != null)
+                return false
+        } else if (empId != other.empId)
+            return false
+        if (name == null) {
+            if (other.name != null)
+                return false
+        } else if (name != other.name)
+            return false
+        return if (java.lang.Double.doubleToLongBits(salary) != java.lang.Double.doubleToLongBits(other.salary)) false else true
+    }
 }

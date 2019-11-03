@@ -1,7 +1,7 @@
 package com.example.pruebadegradleparatesis.Repository
 
-import com.example.pruebadegradleparatesis.Model.Employee
+import com.example.pruebadegradleparatesis.Model.Rol
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface EmployeeRepository:JpaRepository<Employee,Int> {
+interface RolRepository:JpaRepository<Rol,Int> {
 }
