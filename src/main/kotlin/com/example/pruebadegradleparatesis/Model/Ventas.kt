@@ -11,6 +11,10 @@ class Ventas(
 
 
         @OneToMany(mappedBy = "ventas")
+        @JsonBackReference(value = "ventas_pagos")
+        val ventaspagos: List<Pagos> = arrayListOf(),
+
+        @OneToMany(mappedBy = "ventas")
         @JsonBackReference(value = "ventas_documentos")
         val ventasdocumento: List<Documentos> = arrayListOf(),
 
@@ -18,9 +22,6 @@ class Ventas(
         @JsonBackReference(value = "ventas_voucher")
         val ventavoucher: List<Voucher> = arrayListOf(),
 
-        @OneToMany(mappedBy = "ventas")
-        @JsonBackReference(value = "ventas_pagos")
-        val ventaspagos: List<Pagos> = arrayListOf(),
 
         @Column
         @Id

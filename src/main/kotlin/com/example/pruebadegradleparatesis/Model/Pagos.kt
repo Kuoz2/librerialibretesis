@@ -13,9 +13,9 @@ class Pagos(
         @Column
         val pagomonto:Int,
 
-        @ManyToOne( fetch = FetchType.LAZY)
+        @ManyToOne
         @JsonBackReference(value = "ventas_pagos")
-        @JoinColumn(name = "trsnid", nullable = false, referencedColumnName = "trsnid")
+        @JoinColumn(name = "trsnid", nullable = true)
         val ventaspagos: Ventas? = null,
 
 
