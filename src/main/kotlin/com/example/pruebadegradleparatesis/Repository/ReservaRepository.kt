@@ -1,7 +1,7 @@
 package com.example.pruebadegradleparatesis.Repository
 
-import com.example.pruebadegradleparatesis.Model.Medio
+import com.example.pruebadegradleparatesis.Model.Reserva
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface ModoRepository:JpaRepository<Medio,Long> {
+interface ReservaRepository:JpaRepository<Reserva,Long> {
 }

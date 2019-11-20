@@ -1,14 +1,11 @@
 package com.example.pruebadegradleparatesis.Controller
 
 import com.example.pruebadegradleparatesis.Model.DetalleVoucher
-import com.example.pruebadegradleparatesis.Model.Productos
-import com.example.pruebadegradleparatesis.Model.Voucher
+
 import com.example.pruebadegradleparatesis.Repository.DetalleVocuherRepository
-import com.example.pruebadegradleparatesis.Repository.VentasRepository
-import com.example.pruebadegradleparatesis.Repository.VoucherRepository
+
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Controller
-import org.springframework.transaction.annotation.Transactional
+
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
@@ -22,7 +19,7 @@ class ControllerDetalleVocuher {
     lateinit var detalle: DetalleVocuherRepository
 
     @GetMapping
-    fun listar():List<DetalleVoucher>{
+    fun listar(): MutableList<DetalleVoucher> {
 
         return detalle.findAll()
     }
@@ -30,21 +27,26 @@ class ControllerDetalleVocuher {
     @PostMapping
     fun agregar( @RequestBody @Valid v: DetalleVoucher):DetalleVoucher
     {
+                    return detalle.save(v)
+        }
 
-        return detalle.save(v)
+    @RequestMapping("/ultimoregistro")
+    fun listarultimo(): Int {
+
+        return detalle.findAll().last().dvprecio
     }
 
 
+
     //Prurba ultima de voucher
-    /* @RequestMapping("/guardardarosvoucher")
-     @Transactional
+   /* @RequestMapping("/guardardarosvoucher")
      fun guardarpostvoucher():DetalleVoucher{
          val voucher = Voucher(12,12,12)
          val productos = Productos(52562652,"un nombre","enkjndkjas",74,10,10,false,false,pid = 3)
          val detallevoucher = DetalleVoucher(1,2,voucher,productos)
 
 
-         return detallevoucherrepository.save(detallevoucher)
+         return detalle.save(detallevoucher)
      }*/
 
 }

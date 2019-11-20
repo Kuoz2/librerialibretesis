@@ -1,6 +1,7 @@
 package com.example.pruebadegradleparatesis.Model
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.*
 
@@ -9,18 +10,19 @@ import javax.persistence.*
 @Table(name="Ventas")
 class Ventas(
 
-
-        @OneToMany(mappedBy = "ventas")
-        @JsonBackReference(value = "ventas_pagos")
-        val ventaspagos: List<Pagos> = arrayListOf(),
-
-        @OneToMany(mappedBy = "ventas")
+        @OneToMany(mappedBy = "ventas", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
         @JsonBackReference(value = "ventas_documentos")
-        val ventasdocumento: List<Documentos> = arrayListOf(),
+        val ventasdocumento: List<Documentos> = arrayListOf<Documentos>(),
 
-        @OneToMany(mappedBy = "ventas")
+        @OneToMany(mappedBy ="ventas", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+        @JsonBackReference(value = "ventas_pagos")
+        val ventapago: List<Pagos> = arrayListOf<Pagos>(),
+
+        @OneToMany(mappedBy ="ventas",fetch = FetchType.EAGER ,cascade = arrayOf(CascadeType.ALL))
         @JsonBackReference(value = "ventas_voucher")
-        val ventavoucher: List<Voucher> = arrayListOf(),
+        @JsonIgnore
+        val ventavoucher: List<Voucher> = arrayListOf<Voucher>(),
+
 
 
         @Column

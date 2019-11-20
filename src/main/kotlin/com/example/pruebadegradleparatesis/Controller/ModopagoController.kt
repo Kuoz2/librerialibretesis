@@ -1,11 +1,9 @@
 package com.example.pruebadegradleparatesis.Controller
 
+import com.example.pruebadegradleparatesis.Model.Medio
 import com.example.pruebadegradleparatesis.Repository.ModoRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @CrossOrigin(origins = ["http://localhost:4200"],maxAge = 3600)
 @RestController
@@ -15,7 +13,19 @@ class ModopagoController {
     lateinit var mododepago: ModoRepository
 
     @GetMapping
-    fun todoslosmetododepago(){
-        mododepago.findAll()
+    fun todoslosmetododepago(): MutableList<Medio> {
+        return mododepago.findAll()
     }
+    @PostMapping
+    fun guardarmododepago(@RequestBody m:Medio):Medio{
+        return mododepago.save(m)
+    }
+
+
+    @RequestMapping("/formapago")
+        fun Pguardarforma():Medio{
+        val m = Medio("Tarjeta")
+            return mododepago.save(m)
+        }
+
 }

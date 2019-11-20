@@ -3,10 +3,8 @@ package com.example.pruebadegradleparatesis.Controller
 import com.example.pruebadegradleparatesis.Model.Ventas
 import com.example.pruebadegradleparatesis.Repository.VentasRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @CrossOrigin(origins = ["http://localhost:4200"],maxAge = 3600)
 @RestController
@@ -19,5 +17,11 @@ class ControllerVentas {
     @GetMapping
     fun todaslaventas(): MutableList<Ventas> {
         return ventas.findAll()
+    }
+
+    @PostMapping
+    fun guardarventa( @RequestBody @Valid vnt: Ventas): Ventas {
+
+        return ventas.save(vnt)
     }
 }

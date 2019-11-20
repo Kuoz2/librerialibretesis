@@ -19,7 +19,7 @@ class VoucherController {
     @Autowired
     lateinit var detallevoucherrepository: DetalleVocuherRepository
     @GetMapping
-    fun listar(): List<Voucher> {
+    fun listar(): MutableList<Voucher> {
 
         return voucherrepository.findAll()
     }
@@ -29,6 +29,17 @@ class VoucherController {
         return voucherrepository.save(v)
     }
 
+    @RequestMapping("/ultimoregistro")
+    fun listarultimo(): Int {
+        return voucherrepository.findAll().last().vnumerodebusqueda
+    }
 
 
+/*
+    @RequestMapping("/guardarvoucher", method = [RequestMethod.POST])
+    @ResponseBody
+    fun ingresarnuevoucher():Voucher{
+        val datos = Voucher(12,12,12)
+        return voucherrepository.save(datos)
+    }*/
 }

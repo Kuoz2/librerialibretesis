@@ -1,14 +1,11 @@
 package com.example.pruebadegradleparatesis.Model
 
-import com.fasterxml.jackson.annotation.JacksonAnnotation
-import com.fasterxml.jackson.annotation.JsonBackReference
-import com.fasterxml.jackson.annotation.JsonManagedReference
+import com.fasterxml.jackson.annotation.*
 import org.springframework.data.jpa.repository.Query
 import javax.persistence.*
 
 @Entity
 @Table(name = "Productos")
-
 class Productos(
         @Column
         val pcodigo: Int,
@@ -27,6 +24,7 @@ class Productos(
         @Column
         val pactivado: Boolean,
 
+
         @ManyToOne( fetch = FetchType.LAZY)
         @JsonBackReference(value = "categorias_producto")
         @JoinColumn(name = "catid", nullable = false)
@@ -37,9 +35,13 @@ class Productos(
         @JoinColumn(name = "mid", nullable = false)
         val brands: Marca? = null,
 
+        @OneToMany(mappedBy = "reservado",fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+        @JsonBackReference(value = "reservaproducto")
+        val reservando: List<Reserva> = arrayListOf() ,
+
         @OneToMany(mappedBy = "productos",fetch = FetchType.EAGER)
-        @JsonManagedReference(value = "detalle_product")
-        val detallevoucher: List<DetalleVoucher> = emptyList(),
+        @JsonBackReference(value = "detalle_product")
+        val detallevoucher: List<DetalleVoucher> = arrayListOf() ,
         @Column
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)

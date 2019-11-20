@@ -1,6 +1,8 @@
 package com.example.pruebadegradleparatesis.Model
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.*
 
 @Entity
@@ -8,9 +10,12 @@ import javax.persistence.*
 class Medio(
         @Column
         val mpnombre:String,
-        @OneToMany(mappedBy = "mediopago")
-        @JsonBackReference(value = "medio_pago")
-        val mediopagos: List<Pagos> = arrayListOf(),
+
+        @OneToMany(mappedBy="mediopago",fetch = FetchType.EAGER)
+        @JsonManagedReference(value = "medio_pago")
+        @JsonIgnore
+        val pagos: List<Pagos> = arrayListOf(),
+
         @Column
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
