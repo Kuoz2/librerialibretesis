@@ -1,5 +1,6 @@
 package com.example.pruebadegradleparatesis.Model
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonManagedReference
@@ -13,8 +14,8 @@ class Categorias(
         var cnombre:String,
 
         @OneToMany(mappedBy="categories",fetch = FetchType.EAGER)
-        @JsonManagedReference(value = "categorias_producto")
-        val products: List<Productos> = emptyList(),
+        @JsonBackReference(value = "categorias_producto")
+        val products: List<Productos> = arrayListOf(),
 
 
         @Column

@@ -16,7 +16,7 @@ class DetalleVoucher(
         @JoinColumn(name ="vnumero")
         var voucher: Voucher? = null,
 
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.LAZY,  cascade = [CascadeType.ALL])
         @JsonBackReference(value = "detalle_product")
         @JoinColumn(name = "pid")
         @JsonIgnore

@@ -1,9 +1,6 @@
 package com.example.pruebadegradleparatesis.Model
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.annotation.JsonManagedReference
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.*
 import javax.persistence.*
 
 @JsonIgnoreProperties (ignoreUnknown =  true )
@@ -28,12 +25,15 @@ class Usuario(
         val udireccion:String,
         @Column
         val ucontrasenia:String,
-        @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-        @JoinTable(name = "usuario_rol",
-                joinColumns = [JoinColumn(name = "uid", referencedColumnName = "uid")],
-                inverseJoinColumns = [JoinColumn(name = "rolid", referencedColumnName = "rolid")])
-        @JsonFormat(with = [JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY])
-        var rol: List<Rol> = arrayListOf(),
+
+        @ManyToOne( fetch = FetchType.LAZY ,cascade= [CascadeType.MERGE])
+        @JsonBackReference(value = "rolusuario")
+        @JoinColumn(name ="rolid")
+        @JsonProperty("rol")
+        var rol: Rol? = null,
+
+
+
         @Column
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)

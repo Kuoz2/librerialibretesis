@@ -1,7 +1,10 @@
 package com.example.pruebadegradleparatesis.Model
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import java.sql.Time
+import java.sql.Timestamp
 import javax.persistence.*
 
 @Entity
@@ -9,16 +12,28 @@ import javax.persistence.*
 @JsonIgnoreProperties(ignoreUnknown =  true )
 class Reserva(
         @Column
-        var drescantidad: Int,
+        var remision: Timestamp,
         @Column
-        var dresprecio: Int,
+        var rentrega: Timestamp,
         @Column
-        var dreservado: Boolean,
+        var restado: String,
+        @Column
+        var rfaltante: Int,
+        @Column
+        var rtotal: Int,
+        @Column
+        var rcomentario: String,
 
-        @ManyToOne( fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-        @JsonBackReference(value = "reservaproducto")
-        @JoinColumn(name = "pid", nullable = false)
-        val reservado: Productos? = null,
+
+        @OneToMany(mappedBy = "dreserva",fetch = FetchType.EAGER)
+        @JsonBackReference(value = "detalle_reserva")
+        @JsonIgnore
+        val detallevoucher: List<DetalleReserva> = emptyList<DetalleReserva>(),
+
+        @ManyToOne( fetch = FetchType.LAZY ,cascade = arrayOf(CascadeType.ALL))
+        @JsonBackReference(value = "cliente_reserva")
+        @JoinColumn(name ="clid")
+        var cliente: Cliente? = null,
 
         @Column
         @Id
@@ -27,5 +42,4 @@ class Reserva(
 
 
 ) {
-    constructor():this(0,0,false)
 }

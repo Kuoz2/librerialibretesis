@@ -3,10 +3,16 @@ package com.example.pruebadegradleparatesis.Model
 
 
 import com.fasterxml.jackson.annotation.*
+import org.hibernate.annotations.Fetch
+import org.hibernate.annotations.FetchMode
+import org.hibernate.annotations.LazyCollection
+import org.hibernate.annotations.LazyCollectionOption
+import org.springframework.data.repository.cdi.Eager
 
 import javax.persistence.*
 @Entity
 @Table(name="Voucher")
+@JsonIgnoreProperties(ignoreUnknown =  true )
 class Voucher(
 
         @Column
@@ -18,17 +24,17 @@ class Voucher(
         @Column
         val vnumerodebusqueda:Int,
 
-        @OneToMany(mappedBy = "voucher",fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+
+        @OneToMany(mappedBy = "voucher",fetch = FetchType.EAGER)
         @JsonBackReference(value = "detalle_voucher")
         @JsonIgnore
         val detallevoucher: List<DetalleVoucher> = emptyList<DetalleVoucher>(),
 
+        @OneToMany(mappedBy ="ventas", fetch = FetchType.EAGER,cascade= [CascadeType.ALL])
+        @JsonManagedReference(value = "ventas_voucher")
+        @Fetch(value = FetchMode.SUBSELECT)
+        val ventavoucher: List<Ventas> = arrayListOf<Ventas>(),
 
-
-        @ManyToOne(fetch = FetchType.LAZY ,cascade = arrayOf(CascadeType.ALL))
-        @JsonBackReference(value = "ventas_voucher")
-        @JoinColumn(name = "trsnid", nullable = true)
-        val ventas: Ventas? = null,
 
         @Column
         @Id

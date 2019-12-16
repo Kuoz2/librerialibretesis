@@ -6,7 +6,7 @@ import com.example.pruebadegradleparatesis.Repository.MarcaRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
-@CrossOrigin(origins = ["http://localhost:4200"],maxAge = 3600)
+@CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
 @RequestMapping("/marca")
 class ControllerBrands {
@@ -28,6 +28,8 @@ class ControllerBrands {
     fun Actualizarcategoria(@PathVariable("id") id:Long): Marca {
         return brands.getOne(id)
     }
+
+
 
     @PutMapping(path = ["/{id}"])
     fun editar( @PathVariable id:Long, @RequestBody p:Marca):Marca{

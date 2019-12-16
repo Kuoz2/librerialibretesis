@@ -15,7 +15,7 @@ class ControllerVentas {
 
 
     @GetMapping
-    fun todaslaventas(): MutableList<Ventas> {
+    fun todaslaventas(): List<Ventas> {
         return ventas.findAll()
     }
 

@@ -50,19 +50,8 @@ class ControllerUsuario {
        }
 
         @PostMapping
+        @ResponseBody
     fun guardarusuario(@RequestBody @Valid  s:Usuario ): Usuario {
-
-          val datos = Usuario(s.urun,
-                    s.unombre,
-                    s.uapellidop,
-                    s.uapellidom,
-                    s.ufono,
-                    s.ucorreo,
-                    s.unacionalidad,
-                    s.udireccion,
-                    s.ucontrasenia,
-                    ArrayList(s.rol))
-
 
             return usuario.save(s)
         }
@@ -84,20 +73,6 @@ class ControllerUsuario {
         }
     }
 
-     @RequestMapping("/saveuser")
-       fun guardarusuario():Usuario{
-
-           val gusuario = Usuario("17246420-3"
-                   ,"david"
-                   ,"palta"
-                   ,"anes"
-                   ,73804093
-                   ,"david.palta,anes1989@gmail.com"
-                   ,"chilena"
-                   ,"villa los volcanes","111",listOf (Rol("admin")))
-
-           return usuario.save(gusuario)
-       }
 
 
 }
